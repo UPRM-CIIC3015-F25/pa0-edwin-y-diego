@@ -26,6 +26,17 @@ def ball_movement():
             ball_speed_y *= -1  # Reverse ball's vertical direction
             # TODO Task 6: Add sound effects HERE
 
+            if score % 10 == 0:
+                if ball_speed_x > 0:
+                    ball_speed_x += 1
+                else:
+                    ball_speed_x -= 1
+                if ball_speed_y > 0:
+                    ball_speed_y += 1
+                else:
+                    ball_speed_y -= 1
+
+
     # Ball collision with top boundary
     if ball.top <= 0:
         ball_speed_y *= -1  # Reverse ball's vertical direction
