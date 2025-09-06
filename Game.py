@@ -135,6 +135,7 @@ def restart():
     global ball_speed_x, ball_speed_y, score
     ball.center = (screen_width / 2, screen_height / 2)  # Reset ball position to center
     ball_speed_y, ball_speed_x = 0, 0  # Stop ball movement
+    player_speed = 0
     score = 0  # Reset player score
     start = False
 
