@@ -136,6 +136,10 @@ def ball_movement():
             score += 1  # Increase player score
             ball_speed_y *= -1  # Reverse ball's vertical direction
             # TODO Task 6: Add sound effects HERE
+            try:
+                bounce_sound.play()
+            except:
+                print("No se pudo reproducir el sonido de rebote.")
 
             if score % 10 == 0:
                 if ball_speed_x > 0:
