@@ -45,7 +45,7 @@ def play_game_over_sound():
     try:
         game_over_sound.play()
     except:
-        print("⚠ Error al reproducir sonido de game over.")
+        print("Error al reproducir sonido de game over.")
 
 # Main Window setup
 screen_width = 500  # Screen width (can be adjusted)
