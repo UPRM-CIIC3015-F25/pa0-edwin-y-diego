@@ -29,7 +29,7 @@ def play_menu_music():
         pygame.mixer.music.play(-1)
         print("Música de menú reproduciéndose...")
     except Exception as e:
-        print("⚠ Error al cargar la música del menú:", e)
+        print("Error al cargar la música del menú:", e)
 
 def play_game_music():
     try:
