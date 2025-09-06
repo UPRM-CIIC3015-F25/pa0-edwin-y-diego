@@ -175,6 +175,7 @@ def restart():
     score = 0  # Reset player score
     start = False
     pygame.event.clear()
+    play_game_music()
 
 # General setup
 pygame.mixer.pre_init(44100, -16, 1, 1024)
