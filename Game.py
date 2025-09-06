@@ -138,6 +138,7 @@ def restart():
     player_speed = 0
     score = 0  # Reset player score
     start = False
+    pygame.event.clear()
 
 # General setup
 pygame.mixer.pre_init(44100, -16, 1, 1024)
