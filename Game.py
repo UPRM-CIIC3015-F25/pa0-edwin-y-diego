@@ -38,7 +38,7 @@ def play_game_music():
         pygame.mixer.music.play(-1)
         print("Música del juego reproduciéndose...")
     except Exception as e:
-        print("⚠ Error al cargar la música del juego:", e)
+        print("Error al cargar la música del juego:", e)
 
 def play_game_over_sound():
     pygame.mixer.music.stop()
