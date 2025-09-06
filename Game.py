@@ -73,6 +73,7 @@ def menu_simple():
                     return
 
 menu_simple()
+play_game_music()
 
 def game_over_screen():
     global score, start, ball_speed_x, ball_speed_y
