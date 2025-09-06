@@ -48,7 +48,7 @@ def ball_movement():
     ball.x += ball_speed_x
     ball.y += ball_speed_y
 
-    # Start the ball movement when the game begins
+     # Start the ball movement when the game begins
     # TODO Task 5 Create a Merge Conflict
     speed = 7
     if start and ball_speed_x == 0 and ball_speed_y == 0:
