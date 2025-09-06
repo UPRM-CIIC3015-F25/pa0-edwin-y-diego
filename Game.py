@@ -1,5 +1,43 @@
 import pygame, sys, random
 
+# General setup
+pygame.mixer.pre_init(44100, -16, 1, 1024)
+pygame.init()
+clock = pygame.time.Clock()
+
+# Main Window setup
+screen_width = 500  # Screen width (can be adjusted)
+screen_height = 500  # Screen height (can be adjusted)
+screen = pygame.display.set_mode((screen_width, screen_height))
+pygame.display.set_caption('Pong')  # Set window title
+
+# Colors
+bg_color = pygame.Color('grey12')
+white = pygame.Color('white')  # <-- AÑADIDO para el texto del menú
+
+# Fuente del menú
+menu_font = pygame.font.Font('freesansbold.ttf', 24)  # <-- AÑADIDO para fuente del menú
+
+# Menu simple (CORREGIDO)
+def menu_simple():
+    while True:
+        screen.fill(bg_color)
+        text = menu_font.render("Presionar ESPACIO para jugar", True, white)
+        screen.blit(text, (screen_width / 2 - text.get_width() / 2, screen_height / 2 - 25))  # Arreglado get_width()
+        pygame.display.flip()
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    return
+                if event.key == pygame.K_SPACE:
+                    return
+
+menu_simple()
+
 def ball_movement():
     """
     Handles the movement of the ball and collision detection with the player and screen boundaries.
