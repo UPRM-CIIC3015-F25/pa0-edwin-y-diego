@@ -151,6 +151,7 @@ def ball_movement():
 
     # Ball goes below the bottom boundary (missed by player)
     if ball.bottom > screen_height:
+        play_game_over_sound()
         game_over_screen()  # Reset the game
 
 def player_movement():
