@@ -27,7 +27,7 @@ def play_menu_music():
         pygame.mixer.music.stop()
         pygame.mixer.music.load('Music_Menu_Acui.mp3')
         pygame.mixer.music.play(-1)
-        print("🎵 Música de menú reproduciéndose...")
+        print("Música de menú reproduciéndose...")
     except Exception as e:
         print("⚠ Error al cargar la música del menú:", e)
 
