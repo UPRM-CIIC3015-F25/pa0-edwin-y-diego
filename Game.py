@@ -154,6 +154,7 @@ def ball_movement():
         play_game_over_sound()
         game_over_screen()  # Reset the game
 
+
 def player_movement():
     """
     Handles the movement of the player paddle, keeping it within the screen boundaries.
