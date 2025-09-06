@@ -38,6 +38,35 @@ def menu_simple():
 
 menu_simple()
 
+def game_over_screen():
+    global score, start, ball_speed_x, ball_speed_y
+
+    while True:
+        screen.fill(bg_color)
+
+        text1 = basic_font.render("GAME OVER", True, white)
+        text2 = basic_font.render(f"Puntaje: {score}", True, white)
+        text3 = menu_font.render("R = Reiniciar | ESC = Salir", True, white)
+
+        screen.blit(text1, (screen_width / 2 - text1.get_width() / 2, screen_height / 2 - 60))
+        screen.blit(text2, (screen_width / 2 - text2.get_width() / 2, screen_height / 2))
+        screen.blit(text3, (screen_width / 2 - text3.get_width() / 2, screen_height / 2 + 40))
+
+        pygame.display.flip()
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    pygame.quit()
+                    sys.exit()
+                if event.key == pygame.K_r:
+                    restart()
+                    return  # Volver al juego
+
+
 def ball_movement():
     """
     Handles the movement of the ball and collision detection with the player and screen boundaries.
@@ -85,7 +114,7 @@ def ball_movement():
 
     # Ball goes below the bottom boundary (missed by player)
     if ball.bottom > screen_height:
-        restart()  # Reset the game
+        game_over_screen()  # Reset the game
 
 def player_movement():
     """
