@@ -92,7 +92,7 @@ def menu_simple():
             screen.fill(bg_color)
 
         text = menu_font.render("Presionar ESPACIO para jugar", True, white)
-        screen.blit(text, (screen_width / 2 - text.get_width() / 2, screen_height / 2 - 25))  # Arreglado get_width()
+        screen.blit(text, (screen_width / 2 - text.get_width() / 2, screen_height / 2 - -200))
         pygame.display.flip()
 
         for event in pygame.event.get():
