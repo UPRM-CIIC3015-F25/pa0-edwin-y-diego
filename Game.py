@@ -86,7 +86,11 @@ menu_font = pygame.font.Font('freesansbold.ttf', 24)  # <-- AÑADIDO para fuente
 def menu_simple():
     play_menu_music()
     while True:
-        screen.fill(bg_color)
+        if menu_image:
+            screen.blit(menu_image, (0, 0))  # Fondo con la imagen
+        else:
+            screen.fill(bg_color)
+
         text = menu_font.render("Presionar ESPACIO para jugar", True, white)
         screen.blit(text, (screen_width / 2 - text.get_width() / 2, screen_height / 2 - 25))  # Arreglado get_width()
         pygame.display.flip()
