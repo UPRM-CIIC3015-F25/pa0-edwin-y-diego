@@ -53,6 +53,28 @@ screen_height = 500  # Screen height (can be adjusted)
 screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption('Pong')  # Set window title
 
+#Pantallas de simple menu y game over (Tan graciosas)
+try:
+    menu_image = pygame.image.load("pong menu_files/menu.png")  # Guarda la imagen como menu.png
+    menu_image = pygame.transform.scale(menu_image, (screen_width, screen_height))
+except Exception as e:
+    print("Error al cargar la imagen del menú:", e)
+    menu_image = None
+
+try:
+    game_over_image = pygame.image.load("pong menu_files/gameover.png")
+    game_over_image = pygame.transform.scale(game_over_image, (screen_width, screen_height))
+except Exception as e:
+    print("Error al cargar la imagen de game over:", e)
+    game_over_image = None
+
+try:
+    game_bg_image = pygame.image.load("pong menu_files/game screen.png")
+    game_bg_image = pygame.transform.scale(game_bg_image, (screen_width, screen_height))
+except Exception as e:
+    print("Error al cargar el fondo del juego:", e)
+    game_bg_image = None
+
 # Colors
 bg_color = pygame.Color('grey12')
 white = pygame.Color('white')  # <-- AÑADIDO para el texto del menú
