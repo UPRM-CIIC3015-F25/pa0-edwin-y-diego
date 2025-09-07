@@ -112,7 +112,10 @@ def game_over_screen():
     global score, start, ball_speed_x, ball_speed_y
 
     while True:
-        screen.fill(bg_color)
+        if game_over_image:
+            screen.blit(game_over_image, (0, 0))
+        else:
+            screen.fill(bg_color)
 
         text1 = basic_font.render("GAME OVER", True, white)
         text2 = basic_font.render(f"Puntaje: {score}", True, white)
