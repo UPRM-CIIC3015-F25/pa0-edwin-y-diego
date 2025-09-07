@@ -278,6 +278,11 @@ while True:
     ball_movement()
     player_movement()
 
+    if game_bg_image:
+        screen.blit(game_bg_image, (0, 0))
+    else:
+        screen.fill(bg_color)
+
     # Visuals
     light_grey = pygame.Color('grey83')
     red = pygame.Color('red')
