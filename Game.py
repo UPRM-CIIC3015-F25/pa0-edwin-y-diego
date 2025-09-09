@@ -9,12 +9,8 @@ pygame.mixer.init()
 pygame.mixer.music.set_volume(0.5)
 
 # -------------------- SONIDOS --------------------
-# Sonido de game over
-try:
-    game_over_sound = pygame.mixer.Sound('Canciones/risa.mp3')
-    game_over_sound.set_volume(0.7)
-except Exception as e:
-    print("Error al cargar risa.mp3:", e)
+game_over_sound = pygame.mixer.Sound('Canciones/risa.mp3')
+game_over_sound.set_volume(0.7)
 
 try:
     bounce_sound = pygame.mixer.Sound('Canciones/mixkit.wav')
