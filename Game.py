@@ -32,8 +32,8 @@ def play_game_over_sound():
     game_over_sound.play()
 
 # Main Window setup
-screen_width = 500  # Screen width (can be adjusted)
-screen_height = 500  # Screen height (can be adjusted)
+screen_width = 800  # Screen width (can be adjusted)
+screen_height = 600  # Screen height (can be adjusted)
 screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption('Pong')  # Set window title
 
@@ -51,6 +51,11 @@ game_bg_image = pygame.transform.scale(game_bg_image, (screen_width, screen_heig
 bg_color = pygame.Color('grey12')
 white = pygame.Color('white')  # <-- AÑADIDO para el texto del menú
 
+#Nivel 1 (Te muestra el mensaje creo...)
+current_level = 1
+show_level_message = False
+level_message_time = 0
+
 # Fuente del menú
 menu_font = pygame.font.Font('freesansbold.ttf', 24)  # <-- AÑADIDO para fuente del menú
 
@@ -64,7 +69,7 @@ def menu_simple():
             screen.fill(bg_color)
 
         text = menu_font.render("Presionar ESPACIO para jugar", True, white)
-        screen.blit(text, (screen_width / 2 - text.get_width() / 2, screen_height / 2 - -200))
+        screen.blit(text, (screen_width / 2 - text.get_width() / 2, screen_height / 2 - -240))
         pygame.display.flip()
 
         for event in pygame.event.get():
@@ -111,6 +116,20 @@ def game_over_screen():
                     restart()
                     return  # Volver al juego
 
+# Sistema de niveles (despues de 60p para) pa no abusar :)
+def update_level():
+    global player, player_width, player_height, current_level, show_level_message, level_message_time
+
+    if score % 10 == 0:
+        new_level = score // 10 + 1
+        if new_level > current_level:
+            current_level = new_level
+            show_level_message = True
+            level_message_time = pygame.time.get_ticks()
+
+            if player.width > 60:
+                player_width = max(60, player_width - 20)
+                player = pygame.Rect(player.centerx - player_width // 2, player.y, player_width, player_height)
 
 def ball_movement():
     """
@@ -181,11 +200,19 @@ def restart():
     Resets the ball and player scores to the initial state.
     """
     global ball_speed_x, ball_speed_y, player_speed, score, start
+    global player_width, player, current_level, show_level_message
     ball.center = (screen_width // 2, screen_height // 2)  # Reset ball position to center
     ball_speed_y, ball_speed_x = 0, 0  # Stop ball movement
     player_speed = 0
     score = 0  # Reset player score
     start = False
+
+    player_width = 200
+    player = pygame.Rect(screen_width / 2 - player_width // 2, screen_height - 20, player_width, player_height)
+
+    current_level = 1  # NUEVO
+    show_level_message = False  # NUEVO
+
     pygame.event.clear()
     play_game_music()
 
@@ -237,6 +264,8 @@ while True:
     ball_movement()
     player_movement()
 
+    update_level()
+
     if game_bg_image:
         screen.blit(game_bg_image, (0, 0))
     else:
@@ -250,6 +279,14 @@ while True:
     pygame.draw.ellipse(screen, red , ball)  # Draw ball
     player_text = basic_font.render(f'{score}', False, light_grey)  # Render player score
     screen.blit(player_text, (screen_width/2 - 15, 10))  # Display score on screen
+
+    if show_level_message:
+        time_now = pygame.time.get_ticks()
+        if time_now - level_message_time < 2000:  # 2 segundos
+            level_text = basic_font.render(f"¡Nivel {current_level}!", True, red)
+            screen.blit(level_text, (screen_width / 2 - level_text.get_width() / 2, screen_height / 2 - 100))
+        else:
+            show_level_message = False
 
     # Update display
     pygame.display.flip()
