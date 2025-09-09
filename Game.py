@@ -119,9 +119,11 @@ def game_over_screen():
                     restart()
                     return  # Volver al juego
 
+PADDLE_SPEED = 8
+
 # Sistema de niveles (despues de 60p para) pa no abusar :)
 def update_level():
-    global player, player_width, player_height, current_level, show_level_message, level_message_time
+    global player, player_width, player_height, current_level, show_level_message, level_message_time, PADDLE_SPEED
 
     if score % 10 == 0:
         new_level = score // 10 + 1
@@ -135,6 +137,9 @@ def update_level():
             if player.width > 60:
                 player_width = max(60, player_width - 20)
                 player = pygame.Rect(player.centerx - player_width // 2, player.y, player_width, player_height)
+
+            PADDLE_SPEED += 1  # Aumenta la velocidad del pad en cada nivel
+
 
 def ball_movement():
     """
@@ -254,16 +259,16 @@ while True:
             sys.exit()
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
-                player_speed -= 6  # Move paddle left
+                player_speed -= PADDLE_SPEED  # Move paddle left
             if event.key == pygame.K_RIGHT:
-                player_speed += 6  # Move paddle right
+                player_speed += PADDLE_SPEED  # Move paddle right
             if event.key == pygame.K_SPACE:
                 start = True  # Start the ball movement
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_LEFT:
-                player_speed += 6  # Stop moving left
+                player_speed += PADDLE_SPEED  # Stop moving left
             if event.key == pygame.K_RIGHT:
-                player_speed -= 6  # Stop moving right
+                player_speed -= PADDLE_SPEED  # Stop moving right
 
     # Game Logic
     ball_movement()
