@@ -15,6 +15,9 @@ game_over_sound.set_volume(0.7)
 bounce_sound = pygame.mixer.Sound('Canciones/mixkit.wav')
 bounce_sound.set_volume(0.6)
 
+level_up_sound = pygame.mixer.Sound('Canciones/level_up.mp3')
+level_up_sound.set_volume(0.7)
+
 def play_menu_music():
     pygame.mixer.music.stop()
     pygame.mixer.music.load('Music_Menu_Acui.mp3')
@@ -126,6 +129,8 @@ def update_level():
             current_level = new_level
             show_level_message = True
             level_message_time = pygame.time.get_ticks()
+
+            level_up_sound.play()
 
             if player.width > 60:
                 player_width = max(60, player_width - 20)
