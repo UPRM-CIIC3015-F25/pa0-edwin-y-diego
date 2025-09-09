@@ -12,36 +12,24 @@ pygame.mixer.music.set_volume(0.5)
 game_over_sound = pygame.mixer.Sound('Canciones/risa.mp3')
 game_over_sound.set_volume(0.7)
 
-try:
-    bounce_sound = pygame.mixer.Sound('Canciones/mixkit.wav')
-    bounce_sound.set_volume(0.6)
-except Exception as e:
-    print("Error al cargar Canciones/mixkit.wav:", e)
+bounce_sound = pygame.mixer.Sound('Canciones/mixkit.wav')
+bounce_sound.set_volume(0.6)
 
 def play_menu_music():
-    try:
-        pygame.mixer.music.stop()
-        pygame.mixer.music.load('Music_Menu_Acui.mp3')
-        pygame.mixer.music.play(-1)
-        print("Música de menú reproduciéndose...")
-    except Exception as e:
-        print("Error al cargar la música del menú:", e)
+    pygame.mixer.music.stop()
+    pygame.mixer.music.load('Music_Menu_Acui.mp3')
+    pygame.mixer.music.play(-1)
+    print("Música de menú reproduciéndose...")
 
 def play_game_music():
-    try:
-        pygame.mixer.music.stop()
-        pygame.mixer.music.load('Canciones/linkin-park.mp3')
-        pygame.mixer.music.play(-1)
-        print("Música del juego reproduciéndose...")
-    except Exception as e:
-        print("Error al cargar la música del juego:", e)
+    pygame.mixer.music.stop()
+    pygame.mixer.music.load('Canciones/linkin-park.mp3')
+    pygame.mixer.music.play(-1)
+    print("Música del juego reproduciéndose...")
 
 def play_game_over_sound():
     pygame.mixer.music.stop()
-    try:
-        game_over_sound.play()
-    except:
-        print("Error al reproducir sonido de game over.")
+    game_over_sound.play()
 
 # Main Window setup
 screen_width = 500  # Screen width (can be adjusted)
@@ -50,26 +38,14 @@ screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption('Pong')  # Set window title
 
 #Pantallas de simple menu y game over (Tan graciosas)
-try:
-    menu_image = pygame.image.load("pong menu_files/menu.png")  # Guarda la imagen como menu.png
-    menu_image = pygame.transform.scale(menu_image, (screen_width, screen_height))
-except Exception as e:
-    print("Error al cargar la imagen del menú:", e)
-    menu_image = None
+menu_image = pygame.image.load("pong menu_files/menu.png")
+menu_image = pygame.transform.scale(menu_image, (screen_width, screen_height))
 
-try:
-    game_over_image = pygame.image.load("pong menu_files/gameover.png")
-    game_over_image = pygame.transform.scale(game_over_image, (screen_width, screen_height))
-except Exception as e:
-    print("Error al cargar la imagen de game over:", e)
-    game_over_image = None
+game_over_image = pygame.image.load("pong menu_files/gameover.png")
+game_over_image = pygame.transform.scale(game_over_image, (screen_width, screen_height))
 
-try:
-    game_bg_image = pygame.image.load("pong menu_files/game screen.png")
-    game_bg_image = pygame.transform.scale(game_bg_image, (screen_width, screen_height))
-except Exception as e:
-    print("Error al cargar el fondo del juego:", e)
-    game_bg_image = None
+game_bg_image = pygame.image.load("pong menu_files/game screen.png")
+game_bg_image = pygame.transform.scale(game_bg_image, (screen_width, screen_height))
 
 # Colors
 bg_color = pygame.Color('grey12')
@@ -161,10 +137,7 @@ def ball_movement():
             score += 1  # Increase player score
             ball_speed_y *= -1  # Reverse ball's vertical direction
             # TODO Task 6: Add sound effects HERE
-            try:
-                bounce_sound.play()
-            except:
-                print("No se pudo reproducir el sonido de rebote.")
+            bounce_sound.play()
 
             if score % 10 == 0:
                 if ball_speed_x > 0:
@@ -208,7 +181,7 @@ def restart():
     Resets the ball and player scores to the initial state.
     """
     global ball_speed_x, ball_speed_y, player_speed, score, start
-    ball.center = (screen_width / 2, screen_height / 2)  # Reset ball position to center
+    ball.center = (screen_width // 2, screen_height // 2)  # Reset ball position to center
     ball_speed_y, ball_speed_x = 0, 0  # Stop ball movement
     player_speed = 0
     score = 0  # Reset player score
@@ -219,16 +192,6 @@ def restart():
 # General setup
 pygame.mixer.pre_init(44100, -16, 1, 1024)
 pygame.init()
-clock = pygame.time.Clock()
-
-# Main Window setup
-screen_width = 500  # Screen width (can be adjusted)
-screen_height = 500  # Screen height (can be adjusted)
-screen = pygame.display.set_mode((screen_width, screen_height))
-pygame.display.set_caption('Pong')  # Set window title
-
-# Colors
-bg_color = pygame.Color('grey12')
 
 # Game Rectangles (ball and player paddle)
 ball = pygame.Rect(screen_width / 2 - 15, screen_height / 2 - 15, 30, 30)  # Ball (centered)
